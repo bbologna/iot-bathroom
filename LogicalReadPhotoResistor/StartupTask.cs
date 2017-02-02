@@ -61,7 +61,7 @@ namespace LogicalReadPhotoResistor
             ledPin.Write(value);
             System.Diagnostics.Debug.WriteLine(value);
 
-			var status = value == GpioPinValue.Low ? "Not occupied" : "occupied";
+			var status = value == GpioPinValue.High ? "Not occupied" : "occupied";
 
 			SendDeviceToCloudMessagesAsync(status);
         }
