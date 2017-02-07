@@ -57,11 +57,11 @@ namespace LogicalReadPhotoResistor
 
         private void PhotoresistorChanged(GpioPin sender, GpioPinValueChangedEventArgs args)
         {
-            var value = sender.Read();
+            var value = sender.Read() == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High;
             ledPin.Write(value);
             System.Diagnostics.Debug.WriteLine(value);
 
-			var status = value == GpioPinValue.Low ? "Not occupied" : "Occupied";
+			var status = value == GpioPinValue.High ? "Not occupied" : "Occupied";
 
 			SendDeviceToCloudMessagesAsync(status);
         }
